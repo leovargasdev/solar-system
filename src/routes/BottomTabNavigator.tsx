@@ -4,7 +4,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 
 import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
 
 import Home from '../pages/Home';
 import Search from '../pages/Search';
@@ -14,12 +13,11 @@ import Gallery from '../pages/Gallery';
 const BottomTab = createBottomTabNavigator();
 
 export default function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
 
   return (
     <BottomTab.Navigator
       initialRouteName="TabOne"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      tabBarOptions={{ activeTintColor: Colors.tint }}>
       <BottomTab.Screen
         name="Ínicio"
         component={TabOneNavigator}

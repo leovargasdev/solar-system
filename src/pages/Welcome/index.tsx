@@ -1,15 +1,12 @@
 import React from 'react';
 
-import { Container, Title, BackTeste } from './styles';
-
-// import AAAA from '../../assets/images/';
+import { Container, Title } from './styles';
 
 const Welcome: React.FC = () => {
   return (
     <Container>
+        {/* <SolarSystem /> */}
         <Title>Tab Welcome</Title>
-      {/* <BackTeste resizeMode='cover' source={{uri: AAAA}}> */}
-      {/* </BackTeste> */}
     </Container>
   );
 }
