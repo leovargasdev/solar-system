@@ -1,11 +1,3 @@
-<h1 align="center">
-  Solar System
-</h1>
-
-<h4 align = "center">
-  Comece sua jornada pelo Sistema Solar
-</h4>
-
 <p align="center">
   <img alt="Interface da aplicação" src=".github/interface-app.png" width="100%">
 </p>
