@@ -3,8 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 
-import Colors from '../constants/Colors';
-
+import Theme from '../styles/theme/default';
 import Home from '../pages/Home';
 import Search from '../pages/Search';
 import Saved from '../pages/Saved';
@@ -17,7 +16,7 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="TabOne"
-      tabBarOptions={{ activeTintColor: Colors.tint }}>
+      tabBarOptions={{ activeTintColor: Theme.colors.tint }}>
       <BottomTab.Screen
         name="Ínicio"
         component={TabOneNavigator}

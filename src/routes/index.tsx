@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import Welcome from '../pages/Welcome';
 import { RootStackParamList } from '../../types';
-// import BottomTabNavigator from './BottomTabNavigator';
+import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
 
 export default function Navigation() {
@@ -23,7 +23,7 @@ function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Welcome" component={Welcome} />
-      {/* <Stack.Screen name="Root" component={BottomTabNavigator} /> */}
+      <Stack.Screen name="Root" component={BottomTabNavigator} />
     </Stack.Navigator>
   );
 }
