@@ -13,10 +13,10 @@ const defaultTheme: DefaultTheme = {
     tabIconSelected: tintColorDark,
 
     gradientButton: ['#EF5F53', '#FA8F70'],
-    gradientBlue: 'linear-gradient(#5935FF 0%, #48408E 100%)',
-    gradientPink: 'linear-gradient(#FF6CD9 0%, #FF2184 100%)',
-    gradientCyan: 'linear-gradient(#01D4E4 0%, #009DE0 100%)',
-    gradientYellow: 'linear-gradient(#F9C270 0%, #FFAA2B 100%)',
+    gradientBlue: ['#5935FF', '#48408E'],
+    gradientPink: ['#FF6CD9', '#FF2184'],
+    gradientCyan: ['#01D4E4', '#009DE0'],
+    gradientYellow: ['#F9C270', '#FFAA2B'],
   },
 
   fonts: {

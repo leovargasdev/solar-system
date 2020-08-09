@@ -12,10 +12,10 @@ declare module 'styled-components' {
       tabIconSelected: string;
 
       gradientButton: [string, string];
-      gradientBlue: string;
-      gradientPink: string;
-      gradientCyan: string;
-      gradientYellow: string;
+      gradientBlue: [string, string];
+      gradientPink: [string, string];
+      gradientCyan: [string, string];
+      gradientYellow: [string, string];
     };
 
     fonts: {
