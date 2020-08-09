@@ -4,7 +4,7 @@ export default {
   prefixes: [Linking.makeUrl('/')],
   config: {
     screens: {
-      Root: {
+      App: {
         screens: {
           TabOne: {
             screens: {

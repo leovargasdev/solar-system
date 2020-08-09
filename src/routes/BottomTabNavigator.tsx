@@ -1,6 +1,5 @@
 import { Feather } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 
 import Theme from '../styles/theme/default';
@@ -11,100 +10,47 @@ import Gallery from '../pages/Gallery';
 
 const BottomTab = createBottomTabNavigator();
 
-export default function BottomTabNavigator() {
+const IconTab = (props: { name: string; color: string }) => <Feather size={24} {...props} /> ;
 
-  return (
-    <BottomTab.Navigator
-      initialRouteName="TabOne"
-      tabBarOptions={{ activeTintColor: Theme.colors.tint }}>
-      <BottomTab.Screen
-        name="Ínicio"
-        component={TabOneNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="Buscar"
-        component={TabTwoNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="search" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="Salvos"
-        component={TabThreeNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="bookmark" color={color} />,
-        }}
-      />
-      <BottomTab.Screen
-        name="Galeria"
-        component={TabFourNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="image" color={color} />,
-        }}
-      />
-    </BottomTab.Navigator>
-  );
-}
+const BottomTabNavigator = () => (
+  <BottomTab.Navigator
+    initialRouteName="HomeTab"
+    // screenOptions={{tabBarLabel: ({ focused }) => focused ? true : false}}
+    tabBarOptions={{ activeTintColor: Theme.colors.tint }}>
+    <BottomTab.Screen
+      name="HomeTab"
+      component={Home}
+      options={{
+        tabBarLabel: 'Ínicio',
+        tabBarIcon: ({ color }) => <IconTab name="home" color={color} />,
+      }}
+    />
+    <BottomTab.Screen
+      name="SearchTab"
+      component={Search}
+      options={{
+        tabBarLabel: 'Buscar',
+        tabBarIcon: ({ color }) => <IconTab name="search" color={color} />,
+      }}
+    />
+    <BottomTab.Screen
+      name="BookmarkTab"
+      component={Saved}
+      options={{
+        tabBarLabel: 'Salvos',
+        tabBarIcon: ({ color }) => <IconTab name="bookmark" color={color} />,
+      }}
 
-function TabBarIcon(props: { name: string; color: string }) {
-  return <Feather size={24} style={{ marginBottom: -3 }} {...props} />;
-}
+    />
+    <BottomTab.Screen
+      name="GalleryTab"
+      component={Gallery}
+      options={{
+        tabBarLabel: 'Galeria',
+        tabBarIcon: ({ color }) => <IconTab name="image" color={color} />,
+      }}
+    />
+  </BottomTab.Navigator>
+);
 
-const TabOneStack = createStackNavigator();
-
-function TabOneNavigator() {
-  return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneNavigator"
-        component={Home}
-        options={{ headerTitle: 'Tab Ínicio' }}
-      />
-    </TabOneStack.Navigator>
-  );
-}
-
-const TabTwoStack = createStackNavigator();
-
-function TabTwoNavigator() {
-  return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={Search}
-        options={{ headerTitle: 'Tab Buscar' }}
-      />
-    </TabTwoStack.Navigator>
-  );
-}
-
-const TabThreeStack = createStackNavigator();
-
-function TabThreeNavigator() {
-  return (
-    <TabThreeStack.Navigator>
-      <TabThreeStack.Screen
-        name="TabThreeScreen"
-        component={Saved}
-        options={{ headerTitle: 'Tab Salvos' }}
-      />
-    </TabThreeStack.Navigator>
-  );
-}
-
-const TabFourStack = createStackNavigator();
-
-function TabFourNavigator() {
-  return (
-    <TabFourStack.Navigator>
-      <TabFourStack.Screen
-        name="TabFourScreen"
-        component={Gallery}
-        options={{ headerTitle: 'Tab Galeria' }}
-      />
-    </TabFourStack.Navigator>
-  );
-}
+export default BottomTabNavigator;
