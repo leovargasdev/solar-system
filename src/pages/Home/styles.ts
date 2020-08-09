@@ -1,13 +1,11 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View`
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-`;
+interface TextProps {
+  size: Number;
+};
 
-export const Title = styled.Text`
-  font-size: 20px;
+export const Title = styled.Text<TextProps>`
+  font-size: ${props => `${props.size}px`};
   font-weight: 700;
   color: #FFF;
 `;

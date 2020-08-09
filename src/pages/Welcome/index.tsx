@@ -1,10 +1,10 @@
 import React from 'react';
-import { Feather } from '@expo/vector-icons'; 
 import { TouchableOpacity } from 'react-native';
 import { useTheme } from 'styled-components';
 import { useNavigation } from '@react-navigation/native';
 
-import { Container, SolarSystem, Content, TextOne, TextTwo, ButtonGroup, TextAA, Button, TextBB } from './styles';
+import { Text } from '../../components/Layout/styles';
+import { Container, SolarSystem, Content, ButtonGroup, Button, IconButton } from './styles';
 
 const Welcome: React.FC = () => {
   const theme = useTheme();
@@ -14,16 +14,16 @@ const Welcome: React.FC = () => {
     <Container>
       <SolarSystem />
       <Content>
-        <TextOne>Aperte o cinto</TextOne>
-        <TextTwo>Comece sua jornada pelo sistema solar.</TextTwo>
+        <Text type="normal" opacity>Aperte o cinto</Text>
+        <Text type="title" style={{textAlign: 'center'}}>Comece sua jornada pelo sistema solar.</Text>
       </Content>
 
       <ButtonGroup>
-        <TextAA>Pronto para a decolagem?</TextAA>
+        <Text type="small">Pronto para a decolagem?</Text>
         <TouchableOpacity onPress={() => navigation.navigate('Root')}>
           <Button colors={theme.colors.gradientButton} start={[0, 1]} end={[1, 0]} >
-            <TextBB>Começar agora</TextBB>
-            <Feather name="arrow-right" size={18} color="#FFF" />
+            <Text type="normal" bold>Começar agora</Text>
+            <IconButton name="arrow-right" size={18}/>
           </Button>
         </TouchableOpacity>
       </ButtonGroup>

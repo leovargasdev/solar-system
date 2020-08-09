@@ -16,7 +16,7 @@ const BottomTabNavigator = () => (
   <BottomTab.Navigator
     initialRouteName="HomeTab"
     // screenOptions={{tabBarLabel: ({ focused }) => focused ? true : false}}
-    tabBarOptions={{ activeTintColor: Theme.colors.tint }}>
+    tabBarOptions={{ activeTintColor: Theme.colors.tint}}>
     <BottomTab.Screen
       name="HomeTab"
       component={Home}

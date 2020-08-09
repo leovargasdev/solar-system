@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Container, Title } from './styles';
+import { Container, Text } from '../../components/Layout/styles';
 
 const Home: React.FC = () => {
   return (
     <Container>
-      <Title>Tab Ínicio</Title>
+      <Text type="title" bold>aaa</Text>
     </Container>
   );
 }
