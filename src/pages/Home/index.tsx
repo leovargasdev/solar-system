@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
+import { useNavigation } from '@react-navigation/native';
+import { ScrollView } from 'react-native';
 
 import Layout from '../../components/Layout/';
 import { Text } from '../../components/Layout/styles';
@@ -26,6 +28,7 @@ import Venus from '../../assets/planets/venus.svg';
 const Home: React.FC = () => {
   const theme = useTheme();
   const [name, setName] = useState('Leonardo');
+  const navigation = useNavigation();
 
   const categories = [
     {name: 'Planetas', color: theme.colors.gradientBlue, icon: <Planets />},
@@ -40,7 +43,7 @@ const Home: React.FC = () => {
     {name: 'Mercúrio', icon: <Mercury width={164} height={164}/>},
     {name: 'Netuno', icon: <Neptune width={164} height={164}/>},
     {name: 'Plutão', icon: <Pluto width={164} height={164}/>},
-    {name: 'Saturno', icon: <Saturn width={164} height={164}/>},
+    {name: 'Saturno', icon: <Saturn width={270} height={270} style={{top: -50, left: -80}}/>},
     {name: 'Sol', icon: <Sun width={164} height={164}/>},
     {name: 'Terra', icon: <Earth width={164} height={164}/>},
     {name: 'Urânio', icon: <Uranus width={164} height={164}/>},
@@ -49,45 +52,46 @@ const Home: React.FC = () => {
 
   return (
     <Layout>
-      <Header>
-        <NameUser>
-          <Text type="title" bold>Olá, </Text>
-          <Name>{name}</Name>
-        </NameUser>
-        <Feather color="#FFF" size={26} name="settings"/>
-      </Header>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 20}}>
+        <Header>
+          <NameUser>
+            <Text type="title" bold>Olá, </Text>
+            <Name>{name}</Name>
+          </NameUser>
+          <Feather color="#FFF" size={26} name="settings"/>
+        </Header>
 
-      <Text type="normal" style={{marginTop: 5}}>O que você vai apreder hoje?</Text>
-{/* 
-      <InputSearch /> */}
+        <Text type="normal" style={{marginTop: 5}}>O que você vai apreder hoje?</Text>
 
-      <Text type="normal" style={{marginTop: 40, marginBottom: 20}}>Categorias</Text>
+        <InputSearch />
 
-      <Categories>
-        {categories.map( category => (
-          <Category key={category.name} colors={category.color} start={{ x: 1, y: 0 }} end={{ x: 1, y: 1 }}>
-            {category.icon}
-            <Text type="small" style={{marginTop: 8}}>{category.name}</Text>
-          </Category>
-        ))}
-      </Categories>
+        <Text type="normal" style={{marginTop: 40, marginBottom: 20}}>Categorias</Text>
 
-      <Text type="normal" style={{marginTop: 40, marginBottom: 20}}>Planetas</Text>
+        <Categories>
+          {categories.map( category => (
+            <Category key={category.name} colors={category.color} start={{ x: 1, y: 0 }} end={{ x: 1, y: 1 }}>
+              {category.icon}
+              <Text type="small" style={{marginTop: 8}}>{category.name}</Text>
+            </Category>
+          ))}
+        </Categories>
 
-      <ListPlanets>
-        {planets.map(planet=> (
-          <Planet key={planet.name}>
-            <IconPlanet>
-              {planet.icon}
-            </IconPlanet>
-            <NamePlanet>
-              <Text type="normal" bold>{planet.name}</Text>
-              <Feather name="arrow-right" size={18} color="#EF5F53"/>
-            </NamePlanet>
-          </Planet>
-        ))}
-      </ListPlanets>
+        <Text type="normal" style={{marginTop: 40, marginBottom: 20}}>Planetas</Text>
 
+        <ListPlanets>
+          {planets.map(planet=> (
+            <Planet key={planet.name} onPress={() => navigation.navigate('SearchTab')}>
+              <IconPlanet>
+                {planet.icon}
+              </IconPlanet>
+              <NamePlanet>
+                <Text type="normal" bold>{planet.name}</Text>
+                <Feather name="arrow-right" size={18} color="#EF5F53"/>
+              </NamePlanet>
+            </Planet>
+          ))}
+        </ListPlanets>
+      </ScrollView>
     </Layout>
   );
 }

@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import Theme from '../styles/theme/default';
 import Home from '../pages/Home';
+import Planet from '../pages/Planet';
 import Search from '../pages/Search';
 import Saved from '../pages/Saved';
 import Gallery from '../pages/Gallery';
@@ -27,7 +28,8 @@ const BottomTabNavigator = () => (
     />
     <BottomTab.Screen
       name="SearchTab"
-      component={Search}
+      // component={Search}
+      component={Planet}
       options={{
         tabBarLabel: 'Buscar',
         tabBarIcon: ({ color }) => <IconTab name="search" color={color} />,

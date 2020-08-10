@@ -1,9 +1,9 @@
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-
 export const Header = styled.View`
   flex-direction: row;
+  margin-top: 48px;
   justify-content: space-between;
 `;
 
@@ -27,8 +27,8 @@ export const Categories = styled.View`
 export const Category = styled(LinearGradient)`
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
+  width: 77px;
+  height: 77px;
   border-radius: 8px;
 `;
 
