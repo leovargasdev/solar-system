@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import {Feather} from '@expo/vector-icons';
 
 import { 
-  Container, ContainerBG, Constellation, Content, Header, ContentTitle, Title, Description, Section, SectionTitle, Separator
+  Container, ContainerBG, Constellation, Content, Header, ContentTitle, Title, Description, Section, SectionTitle, SectionDescription, Separator
 } from './styles';
 
 import Mars from '../../assets/planets/mars.svg';
 
 const Planet: React.FC = () => {
+  const [introSection, setIntroSection] = useState(false);
+  const [featuresSection, setFeaturesSection] = useState(false);
+  const [hydrologySection, setHydrologySection] = useState(false);
+  const [geographySection, setGeographySection] = useState(false);
 
   return (
     <Container>
@@ -34,31 +38,60 @@ const Planet: React.FC = () => {
           predominante em sua superfície lhe dá uma aparência avermelhada.
         </Description>
 
-        <Section>
-          <Feather name="chevron-down" size={24} color="black" />
-          <SectionTitle>Introdução</SectionTitle>
-        </Section>
+        <View>
+          <Section onPress={() => setIntroSection(!introSection)}>
+            {introSection ? <Feather name="chevron-right" size={24} color="black" /> : <Feather name="chevron-down" size={24} color="black" />}
+            <SectionTitle>Introdução</SectionTitle>
+          </Section>
+          <SectionDescription actived={introSection}>
+            Marte é o quarto planeta a partir do Sol, o segundo menor do Sistema Solar. Batizado em homenagem 
+            ao deus romano da guerra, muitas vezes é descrito como o "Planeta Vermelho", porque o óxido de ferro 
+            predominante em sua superfície lhe dá uma aparência avermelhada.
+          </SectionDescription>
+        </View>
 
         <Separator />
 
-        <Section>
-          <Feather name="chevron-down" size={24} color="black" />
-          <SectionTitle>Características Físicas</SectionTitle>
-        </Section>
+        <View>
+          <Section onPress={() => setFeaturesSection(!featuresSection)}>
+            {featuresSection ? <Feather name="chevron-right" size={24} color="black" /> : <Feather name="chevron-down" size={24} color="black" />}
+            <SectionTitle>Características Físicas</SectionTitle>
+          </Section>
+          <SectionDescription actived={featuresSection}>
+            Marte é o quarto planeta a partir do Sol, o segundo menor do Sistema Solar. Batizado em homenagem 
+            ao deus romano da guerra, muitas vezes é descrito como o "Planeta Vermelho", porque o óxido de ferro 
+            predominante em sua superfície lhe dá uma aparência avermelhada.
+          </SectionDescription>
+        </View>
 
         <Separator />
 
-        <Section>
-          <Feather name="chevron-down" size={24} color="black" />
-          <SectionTitle>Hidrologia</SectionTitle>
-        </Section>
+        <View>
+          <Section onPress={() => setHydrologySection(!hydrologySection)}>
+            {hydrologySection ? <Feather name="chevron-right" size={24} color="black" /> : <Feather name="chevron-down" size={24} color="black" />}
+            <SectionTitle>Hidrologia</SectionTitle>
+          </Section>
+          <SectionDescription actived={hydrologySection}>
+            Marte é o quarto planeta a partir do Sol, o segundo menor do Sistema Solar. Batizado em homenagem 
+            ao deus romano da guerra, muitas vezes é descrito como o "Planeta Vermelho", porque o óxido de ferro 
+            predominante em sua superfície lhe dá uma aparência avermelhada.
+          </SectionDescription>
+        </View>
 
         <Separator />
 
-        <Section>
-          <Feather name="chevron-down" size={24} color="black" />
-          <SectionTitle>Geografia</SectionTitle>
-        </Section>
+        <View>
+          <Section onPress={() => setGeographySection(!geographySection)}>
+            {geographySection ? <Feather name="chevron-right" size={24} color="black" /> : <Feather name="chevron-down" size={24} color="black" />}
+            <SectionTitle>Geografia</SectionTitle>
+          </Section>
+          <SectionDescription actived={geographySection}>
+            Marte é o quarto planeta a partir do Sol, o segundo menor do Sistema Solar. Batizado em homenagem 
+            ao deus romano da guerra, muitas vezes é descrito como o "Planeta Vermelho", porque o óxido de ferro 
+            predominante em sua superfície lhe dá uma aparência avermelhada.
+          </SectionDescription>
+        </View>
+
       </Content>
     </Container>
   );

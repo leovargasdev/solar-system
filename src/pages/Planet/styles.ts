@@ -3,7 +3,7 @@ import BGConstellation from '../../assets/backgrounds/constellation.svg';
 
 export const Container = styled.ScrollView.attrs({
   showsVerticalScrollIndicator: false,
-  contentContainerStyle:{ height: 840 } // <-- CORRIGIR ESSA GAMBI
+  contentContainerStyle:{ height: 1000 } // <-- CORRIGIR ESSA GAMBI
 })`
   background: #FFF;
   position: relative;
@@ -63,7 +63,7 @@ export const Description = styled.Text`
   margin-bottom: 30px;
 `;
 
-export const Section = styled.View`
+export const Section = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
 `;
@@ -75,6 +75,20 @@ export const SectionTitle = styled.Text`
   font-size: 16px;
   line-height: 19px;
   color: ${({theme}) => theme.colors.black};
+`;
+
+interface SectionDescriptionProps {
+  actived?: boolean;
+}
+
+export const SectionDescription = styled.Text<SectionDescriptionProps>`
+  font-family: ${({theme}) => theme.fonts.regular};
+  font-size: 14px;
+  line-height: 16px;
+  opacity: 0.6;
+  padding: 10px 2px 0;
+  color: ${({theme}) => theme.colors.black};
+  display: ${props => props.actived ? 'flex' : 'none'};
 `;
 
 export const Separator = styled.View`
