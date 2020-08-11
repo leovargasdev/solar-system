@@ -1,5 +1,6 @@
 import { Feather } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 
 import Theme from '../styles/theme/default';
@@ -12,6 +13,17 @@ import Gallery from '../pages/Gallery';
 const BottomTab = createBottomTabNavigator();
 
 const IconTab = (props: { name: string; color: string }) => <Feather size={24} {...props} /> ;
+
+const Stack = createStackNavigator();
+
+function SearchNavigator() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Search" component={Search} />
+      <Stack.Screen name="Planet" component={Planet} />
+    </Stack.Navigator>
+  );
+}
 
 const BottomTabNavigator = () => (
   <BottomTab.Navigator
@@ -28,8 +40,7 @@ const BottomTabNavigator = () => (
     />
     <BottomTab.Screen
       name="SearchTab"
-      // component={Search}
-      component={Planet}
+      component={SearchNavigator}
       options={{
         tabBarLabel: 'Buscar',
         tabBarIcon: ({ color }) => <IconTab name="search" color={color} />,

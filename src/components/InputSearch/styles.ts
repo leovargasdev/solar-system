@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { Feather } from '@expo/vector-icons';
 
 export const Container = styled.View`
-  margin-top: 50px;
+  margin-top: 30px;
   flex-direction: row;
   padding: 0 20px;
   align-items: center;

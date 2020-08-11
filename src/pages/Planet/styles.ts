@@ -3,7 +3,7 @@ import BGConstellation from '../../assets/backgrounds/constellation.svg';
 
 export const Container = styled.ScrollView.attrs({
   showsVerticalScrollIndicator: false,
-  contentContainerStyle:{ height: 1000 } // <-- CORRIGIR ESSA GAMBI
+  contentContainerStyle:{ height: 1250 } // <-- CORRIGIR ESSA GAMBI
 })`
   background: #FFF;
   position: relative;

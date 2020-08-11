@@ -65,7 +65,7 @@ const Home: React.FC = () => {
 
         <InputSearch />
 
-        <Text type="normal" style={{marginTop: 40, marginBottom: 20}}>Categorias</Text>
+        <Text type="normal" style={{marginTop: 30, marginBottom: 20}}>Categorias</Text>
 
         <Categories>
           {categories.map( category => (
@@ -80,7 +80,7 @@ const Home: React.FC = () => {
 
         <ListPlanets>
           {planets.map(planet=> (
-            <Planet key={planet.name} onPress={() => navigation.navigate('SearchTab')}>
+            <Planet key={planet.name} onPress={() => navigation.navigate('Planet')}>
               <IconPlanet>
                 {planet.icon}
               </IconPlanet>
