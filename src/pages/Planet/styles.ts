@@ -1,10 +1,8 @@
 import styled from 'styled-components/native';
 import BGConstellation from '../../assets/backgrounds/constellation.svg';
 
-export const Container = styled.ScrollView.attrs({
-  showsVerticalScrollIndicator: false,
-  contentContainerStyle:{ height: 1250 } // <-- CORRIGIR ESSA GAMBI
-})`
+export const Container = styled.View`
+  flex: 1;
   background: #FFF;
   position: relative;
 `;
@@ -26,7 +24,6 @@ export const Constellation = styled(BGConstellation)`
 `;
 
 export const Content = styled.View`
-  position: absolute;
   width: 100%;
   top: 0;
   left: 0;
