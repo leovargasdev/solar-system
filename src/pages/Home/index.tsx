@@ -80,7 +80,7 @@ const Home: React.FC = () => {
 
         <ListPlanets>
           {planets.map(planet=> (
-            <Planet key={planet.name} onPress={() => navigation.navigate('Planet')}>
+            <Planet key={planet.name} onPress={() => navigation.navigate('SearchTab', { screen: 'Planet'})}>
               <IconPlanet>
                 {planet.icon}
               </IconPlanet>
