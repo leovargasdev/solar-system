@@ -12,14 +12,19 @@ import Gallery from '../pages/Gallery';
 
 const BottomTab = createBottomTabNavigator();
 
-const IconTab = (props: { name: string; color: string }) => <Feather size={24} {...props} /> ;
+const IconTab = (props: { name: string; color: string }) => <Feather size={24} {...props} />;
 
-const Stack = createStackNavigator();
+type RootStackParamList = {
+  Planet: undefined;
+  Search: { query: string };
+};
+
+const Stack = createStackNavigator<RootStackParamList>();
 
 function SearchNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Search" component={Search} />
+      <Stack.Screen name="Search" component={Search} initialParams={{ query: '' }}/>
       <Stack.Screen name="Planet" component={Planet} />
     </Stack.Navigator>
   );

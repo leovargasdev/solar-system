@@ -1,6 +1,7 @@
 import React from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+// import { useRoute, RouteProp } from '@react-navigation/native';
 
 import Layout from '../../components/Layout/';
 import { Text } from '../../components/Layout/styles';
@@ -11,7 +12,16 @@ import { Header, Box, IconPlanet, BoxContent, Title, Button} from './styles';
 import Neptune from '../../assets/planets/neptune.svg';
 import Mars from '../../assets/planets/mars.svg';
 
+// type ParamList = {
+//   Search: {
+//     query: string;
+//   };
+// };
+
 const Search: React.FC = () => {
+  // const route = useRoute<RouteProp<ParamList, 'Search'>>();
+  // console.log('aaaaaa', route.params.query);
+
   return (
     <Layout>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{paddingBottom: 20}}>

@@ -19,4 +19,5 @@ export const Icon = styled(Feather)`
 
 export const Input = styled.TextInput`
   background: transparent;
+  color: #FFF;
 `;
