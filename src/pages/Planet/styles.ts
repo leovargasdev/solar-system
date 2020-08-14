@@ -88,6 +88,11 @@ export const SectionDescription = styled.Text<SectionDescriptionProps>`
   display: ${props => props.actived ? 'flex' : 'none'};
 `;
 
+export const SectionDescriptionView = styled.View<SectionDescriptionProps>`
+  padding: 10px 2px 0;
+  display: ${props => props.actived ? 'flex' : 'none'};
+`;
+
 export const Separator = styled.View`
   opacity: 0.08;
   border: 1px solid #151515;
@@ -95,3 +100,25 @@ export const Separator = styled.View`
   margin: 20px 0;
 `;
 
+export const FeaturesContent = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2px 0;
+  opacity: 0.8;
+`;
+
+export const FeaturesLegend = styled.Text`
+  font-family: ${({theme}) => theme.fonts.bold};
+  font-size: 14px;
+  line-height: 16px;
+  color: ${({theme}) => theme.colors.black};
+`;
+
+export const FeaturesValue = styled.Text`
+  font-family: ${({theme}) => theme.fonts.regular};
+  font-size: 14px;
+  line-height: 16px;
+  color: ${({theme}) => theme.colors.black};
+  /* opacity: 0.8; */
+`;

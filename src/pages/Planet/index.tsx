@@ -3,9 +3,24 @@ import { View, ScrollView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
 import { 
-  Container, ContainerBG, Constellation, Content, Header, ContentTitle, Title, Description, Section, SectionTitle, SectionDescription, Separator
+  Container, 
+  ContainerBG,
+  Constellation,
+  Content,
+  Header,
+  ContentTitle,
+  Title,
+  Description,
+  Section,
+  SectionTitle,
+  SectionDescription,
+  SectionDescriptionView,
+  Separator,
+  FeaturesContent,
+  FeaturesLegend,
+  FeaturesValue
 } from './styles';
-import { Text } from '../../components/Layout/styles';
+
 import Mars from '../../assets/planets/mars.svg';
 
 const Planet: React.FC = () => {
@@ -56,13 +71,34 @@ const Planet: React.FC = () => {
           <View>
             <Section onPress={() => setFeaturesSection(!featuresSection)}>
               {featuresSection ? <Feather name="chevron-right" size={24} color="black" /> : <Feather name="chevron-down" size={24} color="black" />}
-              <SectionTitle>Características Físicas</SectionTitle>
+              <SectionTitle>Características</SectionTitle>
             </Section>
-            <SectionDescription actived={featuresSection}>
-              Marte é o quarto planeta a partir do Sol, o segundo menor do Sistema Solar. Batizado em homenagem 
-              ao deus romano da guerra, muitas vezes é descrito como o "Planeta Vermelho", porque o óxido de ferro 
-              predominante em sua superfície lhe dá uma aparência avermelhada.
-            </SectionDescription>
+            <SectionDescriptionView actived={featuresSection}>
+              <FeaturesContent>
+                <FeaturesLegend>Raio</FeaturesLegend>
+                <FeaturesValue>2439 Km</FeaturesValue>
+              </FeaturesContent>
+              <FeaturesContent>
+                <FeaturesLegend>Período Orbital</FeaturesLegend>
+                <FeaturesValue>87,969 dias</FeaturesValue>
+              </FeaturesContent>
+              <FeaturesContent>
+                <FeaturesLegend>Velocidade Orbital</FeaturesLegend>
+                <FeaturesValue>47,362 km/s</FeaturesValue>
+              </FeaturesContent>
+              <FeaturesContent>
+                <FeaturesLegend>Distância do Sol</FeaturesLegend>
+                <FeaturesValue>57.910.000 km</FeaturesValue>
+              </FeaturesContent>
+              <FeaturesContent>
+                <FeaturesLegend>Número de Satélites</FeaturesLegend>
+                <FeaturesValue>0</FeaturesValue>
+              </FeaturesContent>
+              <FeaturesContent>
+                <FeaturesLegend>Temperatura Média</FeaturesLegend>
+                <FeaturesValue>166 °C</FeaturesValue>
+              </FeaturesContent>
+            </SectionDescriptionView>
           </View>
 
           <Separator />
