@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useTheme } from 'styled-components';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native';
+import { SvgUri } from 'react-native-svg';
 
 import Layout from '../../components/Layout/';
 import { Text } from '../../components/Layout/styles';
@@ -14,40 +15,34 @@ import Galaxies from '../../assets/categories/Galaxies.svg';
 import Planets from '../../assets/categories/Planets.svg';
 import Stars from '../../assets/categories/Stars.svg';
 
-import Earth from '../../assets/planets/earth.svg';
-import Jupiter from '../../assets/planets/jupiter.svg';
-import Mars from '../../assets/planets/mars.svg';
-import Mercury from '../../assets/planets/mercury.svg';
-import Neptune from '../../assets/planets/neptune.svg';
-import Pluto from '../../assets/planets/pluto.svg';
-import Saturn from '../../assets/planets/saturn.svg';
-import Sun from '../../assets/planets/sun.svg';
-import Uranus from '../../assets/planets/uranus.svg';
-import Venus from '../../assets/planets/venus.svg';
+import api from '../../services/api';
+
+interface Planet {
+  id: string;
+  name: string;
+  image: string;
+}
 
 const Home: React.FC = () => {
   const theme = useTheme();
   const [name, setName] = useState('Leonardo');
+  const [planets, setPlanets] = useState<Planet[]>([]);
   const navigation = useNavigation();
+
+  useEffect(() => {
+    async function loadPlanets(){
+      const response = await api.get('/planets');
+      setPlanets(response.data);
+    }
+    
+    loadPlanets();
+  })
 
   const categories = [
     {name: 'Planetas', color: theme.colors.gradientBlue, icon: <Planets />},
     {name: 'Asteróides', color: theme.colors.gradientPink, icon: <Asteroids />},
     {name: 'Estrelas', color: theme.colors.gradientCyan, icon: <Stars />},
     {name: 'Galáxias', color: theme.colors.gradientYellow, icon: <Galaxies />},
-  ];
-
-  const planets = [
-    {name: 'Júpter', icon: <Jupiter width={164} height={164}/>},
-    {name: 'Marte', icon: <Mars width={164} height={164}/>},
-    {name: 'Mercúrio', icon: <Mercury width={164} height={164}/>},
-    {name: 'Netuno', icon: <Neptune width={164} height={164}/>},
-    {name: 'Plutão', icon: <Pluto width={164} height={164}/>},
-    {name: 'Saturno', icon: <Saturn width={270} height={270} style={{top: -50, left: -80}}/>},
-    {name: 'Sol', icon: <Sun width={164} height={164}/>},
-    {name: 'Terra', icon: <Earth width={164} height={164}/>},
-    {name: 'Urânio', icon: <Uranus width={164} height={164}/>},
-    {name: 'Vênus', icon: <Venus width={164} height={164}/>},
   ];
 
   return (
@@ -80,9 +75,12 @@ const Home: React.FC = () => {
 
         <ListPlanets>
           {planets.map(planet=> (
-            <Planet key={planet.name} onPress={() => navigation.navigate('SearchTab', { screen: 'Planet'})}>
+            <Planet key={planet.id} onPress={() => navigation.navigate('SearchTab', { screen: 'Planet'})}>
               <IconPlanet>
-                {planet.icon}
+                {planet.name === 'Saturno' ? 
+                  <SvgUri width={270} height={270} style={{top: -52, left: -80}} uri={planet.image} />
+                  : <SvgUri width={170} height={170} uri={planet.image} />
+                }
               </IconPlanet>
               <NamePlanet>
                 <Text type="normal" bold>{planet.name}</Text>
