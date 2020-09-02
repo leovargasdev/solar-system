@@ -1,7 +1,7 @@
+import React from 'react';
 import { Feather } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import * as React from 'react';
 
 import Theme from '../styles/theme/default';
 import Home from '../pages/Home';
@@ -14,23 +14,16 @@ const BottomTab = createBottomTabNavigator();
 
 const IconTab = (props: { name: string; color: string }) => <Feather size={24} {...props} />;
 
-type RootStackParamList = {
-  Planet: undefined;
-  Search: { query: string };
-};
+const Stack = createStackNavigator();
 
-const Stack = createStackNavigator<RootStackParamList>();
+const SearchNavigator = () => (
+  <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Screen name="Search" component={Search} initialParams={{ query: '' }}/>
+    <Stack.Screen name="Planet" component={Planet} />
+  </Stack.Navigator>
+);
 
-function SearchNavigator() {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Search" component={Search} initialParams={{ query: '' }}/>
-      <Stack.Screen name="Planet" component={Planet} />
-    </Stack.Navigator>
-  );
-}
-
-const BottomTabNavigator = () => (
+const AppRoutes = () => (
   <BottomTab.Navigator
     initialRouteName="HomeTab"
     // screenOptions={{tabBarLabel: ({ focused }) => focused ? true : false}}
@@ -58,7 +51,6 @@ const BottomTabNavigator = () => (
         tabBarLabel: 'Salvos',
         tabBarIcon: ({ color }) => <IconTab name="bookmark" color={color} />,
       }}
-
     />
     <BottomTab.Screen
       name="GalleryTab"
@@ -71,4 +63,4 @@ const BottomTabNavigator = () => (
   </BottomTab.Navigator>
 );
 
-export default BottomTabNavigator;
+export default AppRoutes;

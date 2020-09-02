@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import { View, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, ScrollView, TouchableWithoutFeedback } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
+import { SvgUri } from 'react-native-svg';
 
 import { 
   Container, 
@@ -21,9 +23,34 @@ import {
   FeaturesValue
 } from './styles';
 
-import Mars from '../../assets/planets/mars.svg';
+import api from '../../services/api';
+
+interface PlanetProps {
+  id: string;
+  name: string;
+  image: string;
+}
+
+type PlanetRouteProps = {
+  Params: {
+    id: string;
+  }
+}
 
 const Planet: React.FC = () => {
+  const navigate = useNavigation();
+  const route = useRoute<RouteProp<PlanetRouteProps, 'Params'>>();
+
+  const [planet, setPlanet] = useState<PlanetProps>({} as PlanetProps);
+
+  useEffect(() => {
+    async function loadPlanet(){
+      const response = await api.get(`planet/${route.params.id}`);
+      setPlanet(response.data);
+    }
+    loadPlanet();
+  }, [route]);
+  
   const [introSection, setIntroSection] = useState(false);
   const [featuresSection, setFeaturesSection] = useState(false);
   const [hydrologySection, setHydrologySection] = useState(false);
@@ -37,12 +64,19 @@ const Planet: React.FC = () => {
         </ContainerBG>
         <Content>
           <Header>
-            <Feather name="arrow-left" size={25} color="#FFF"/>
-            <Mars width={280} height={280}/>
+            <TouchableWithoutFeedback onPress={() => navigate.goBack()}>
+              <Feather color="#FFF" size={25} name="arrow-left"/>
+            </TouchableWithoutFeedback>
+
+            {planet.name === 'Saturno' ? 
+              <SvgUri width={330} height={330} uri={planet.image} style={{top: 20, left: -30, bottom: 0}}/>
+              : <SvgUri width={280} height={280} uri={planet.image} />
+            }
+
             <Feather name="settings" size={25} color="#FFF"/>
           </Header>
-          <ContentTitle>
-            <Title>Marte</Title>
+          <ContentTitle style={{marginTop: planet.name === 'Saturno' ? -30 : 0}}>
+            <Title>{planet.name}</Title>
             <View style={{flexDirection: 'row'}}>
               <Feather name="bookmark" size={28} color="#151515" style={{marginRight: 16}} />
               <Feather name="share-2" size={28} color="#151515" />

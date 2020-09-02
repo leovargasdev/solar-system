@@ -3,23 +3,29 @@ import { useNavigation } from '@react-navigation/native';
 
 import { Container, Icon, Input } from './styles';
 
-const InputSearch: React.FC = () => {
-  const [textSearch, setTextSearch] = useState('');
+interface InputSearchProps {
+  value?: string;
+}
+
+const InputSearch: React.FC<InputSearchProps> = ({value = ''}) => {
+  const [textSearch, setTextSearch] = useState(value);
   const navigation = useNavigation();
 
-  const abacaxi = useCallback(() => {
-    navigation.navigate('SearchTab', { screen: 'Search', query: textSearch})
+  const handleSearch = useCallback(() => {
+    navigation.navigate('SearchTab', { screen: 'Search', params: {query: textSearch}})
   }, []);
 
   return (
     <Container>
       <Icon size={18} name="search"/>
-      <Input 
+      <Input
+        autoCorrect={false}
+        autoCapitalize="none"
         placeholder="Procure planetas, asteroides, estrelas..."
         value={textSearch}
         onChangeText={setTextSearch}
-        returnKeyType="done"
-        onSubmitEditing={abacaxi}
+        returnKeyType="search"
+        onSubmitEditing={handleSearch}
       />
     </Container>
   )

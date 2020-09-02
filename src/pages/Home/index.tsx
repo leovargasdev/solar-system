@@ -75,7 +75,7 @@ const Home: React.FC = () => {
 
         <ListPlanets>
           {planets.map(planet=> (
-            <Planet key={planet.id} onPress={() => navigation.navigate('SearchTab', { screen: 'Planet'})}>
+            <Planet key={planet.id} onPress={() => navigation.navigate('SearchTab', { screen: 'Planet', params: {id: planet.id}})}>
               <IconPlanet>
                 {planet.name === 'Saturno' ? 
                   <SvgUri width={270} height={270} style={{top: -52, left: -80}} uri={planet.image} />
