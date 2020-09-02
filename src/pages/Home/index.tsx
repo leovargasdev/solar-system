@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Feather } from '@expo/vector-icons';
-import { useTheme } from 'styled-components';
 import { useNavigation } from '@react-navigation/native';
 import { ScrollView } from 'react-native';
 import { SvgUri } from 'react-native-svg';
 
 import Layout from '../../components/Layout/';
+import Categories from '../../components/Categories/';
 import { Text } from '../../components/Layout/styles';
 import InputSearch from '../../components/InputSearch/';
-import { Header, NameUser, Name, Categories, Category, ListPlanets, Planet, IconPlanet, NamePlanet } from './styles';
 
-import Asteroids from '../../assets/categories/Asteroids.svg';
-import Galaxies from '../../assets/categories/Galaxies.svg';
-import Planets from '../../assets/categories/Planets.svg';
-import Stars from '../../assets/categories/Stars.svg';
+import { Header, NameUser, Name, ListPlanets, Planet, IconPlanet, NamePlanet } from './styles';
 
 import api from '../../services/api';
 
@@ -24,7 +20,6 @@ interface Planet {
 }
 
 const Home: React.FC = () => {
-  const theme = useTheme();
   const [name, setName] = useState('Leonardo');
   const [planets, setPlanets] = useState<Planet[]>([]);
   const navigation = useNavigation();
@@ -37,13 +32,6 @@ const Home: React.FC = () => {
     
     loadPlanets();
   })
-
-  const categories = [
-    {name: 'Planetas', color: theme.colors.gradientBlue, icon: <Planets />},
-    {name: 'Asteróides', color: theme.colors.gradientPink, icon: <Asteroids />},
-    {name: 'Estrelas', color: theme.colors.gradientCyan, icon: <Stars />},
-    {name: 'Galáxias', color: theme.colors.gradientYellow, icon: <Galaxies />},
-  ];
 
   return (
     <Layout>
@@ -62,14 +50,7 @@ const Home: React.FC = () => {
 
         <Text type="normal" style={{marginTop: 30, marginBottom: 20}}>Categorias</Text>
 
-        <Categories>
-          {categories.map( category => (
-            <Category key={category.name} colors={category.color} start={{ x: 1, y: 0 }} end={{ x: 1, y: 1 }}>
-              {category.icon}
-              <Text type="small" style={{marginTop: 8}}>{category.name}</Text>
-            </Category>
-          ))}
-        </Categories>
+        <Categories />
 
         <Text type="normal" style={{marginTop: 40, marginBottom: 20}}>Planetas</Text>
 

@@ -22,6 +22,7 @@ const InputSearch: React.FC<InputSearchProps> = ({value = ''}) => {
         autoCorrect={false}
         autoCapitalize="none"
         placeholder="Procure planetas, asteroides, estrelas..."
+        keyboardAppearance="dark"
         value={textSearch}
         onChangeText={setTextSearch}
         returnKeyType="search"
