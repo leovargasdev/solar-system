@@ -1,16 +1,16 @@
 import React, {useEffect, useState, useCallback} from 'react';
-import { ScrollView, TouchableWithoutFeedback } from 'react-native';
+import { ScrollView, TouchableWithoutFeedback, View } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { SvgUri } from 'react-native-svg';
 
 import Layout from '../../components/Layout/';
 import { Text } from '../../components/Layout/styles';
 import InputSearch from '../../components/InputSearch/';
 
-import { Header, Box, IconPlanet, BoxContent, Title, Button} from './styles';
+import { Header, ItensList, ItemContainer, ItemContent, IconPlanet, ItemTitle, Button} from './styles';
 
-import Neptune from '../../assets/planets/neptune.svg';
-import Mars from '../../assets/planets/mars.svg';
+// import Mars from '../../assets/planets/mars.svg';
 
 import api from '../../services/api';
 
@@ -20,7 +20,7 @@ type SearchRouteProps = {
   };
 };
 
-interface PlanetProps {
+export interface PlanetProps {
   id: string;
   name: string;
   image: string;
@@ -55,28 +55,35 @@ const Search: React.FC = () => {
       
         <InputSearch value={query} onSubmit={handleNewSearch}/>
 
-        {listPlanets.map(planet => (
-          <Box key={planet.id}>
-            <IconPlanet>
-              <Neptune width={225} height={225}/>
-            </IconPlanet>
-            <BoxContent>
-              <Title>
-                <Text type="title" style={{flex: 1}}>{planet.name}</Text>
-                <Feather name="bookmark" size={26} color="#FFF"/>
-              </Title> 
-              <Text type="small" opacity>{planet.resume.slice(0, 96).concat('...')}</Text>
-              <Button onPress={() => {}}>
-                <Text type="small" bold>Continue lendo</Text>
-                <Feather name="arrow-right" size={18} color="#EF5F53" style={{marginLeft: 8}}/>
-              </Button>
-            </BoxContent>
-          </Box>
-        ))}
+        <ItensList
+          data={listPlanets}
+          keyExtractor={planet => planet.id}
+          renderItem={({ item: planet }) => (
+            <ItemContainer key={planet.id}>
+              <IconPlanet>
+                {planet.name === 'Saturno' ? 
+                  <SvgUri width={360} height={360} style={{top: -52, left: -125}} uri={planet.image} />
+                  : <SvgUri width={225} height={225} uri={planet.image} />
+                }
+              </IconPlanet>
+              <ItemContent>
+                <ItemTitle>
+                  <Text type="title">{planet.name}</Text>
+                  <Feather name="bookmark" size={26} color="#FFF"/>
+                </ItemTitle> 
+                <Text type="small" opacity>{planet.resume.slice(0, 93).concat('...')}</Text>
+                <Button onPress={() => {}}>
+                  <Text type="small" bold>Continue lendo</Text>
+                  <Feather name="arrow-right" size={18} color="#EF5F53" style={{marginLeft: 8}}/>
+                </Button>
+              </ItemContent>
+            </ItemContainer>
+          )}
+        />
 
         <Text type="normal" style={{marginTop: 30}}>Você também pode gostar</Text>
 
-        <Box>
+        {/* <Box>
           <IconPlanet>
             <Mars width={225} height={225}/>
           </IconPlanet>
@@ -91,7 +98,7 @@ const Search: React.FC = () => {
               <Feather name="arrow-right" size={18} color="#EF5F53" style={{marginLeft: 8}}/>
             </Button>
           </BoxContent>
-        </Box>
+        </Box> */}
       </ScrollView>
     </Layout>
   );
