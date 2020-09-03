@@ -1,19 +1,18 @@
 import React, { useState, useCallback } from 'react';
-import { useNavigation } from '@react-navigation/native';
 
 import { Container, Icon, Input } from './styles';
 
 interface InputSearchProps {
   value?: string;
+  onSubmit(textSearch: string): void;
 }
 
-const InputSearch: React.FC<InputSearchProps> = ({value = ''}) => {
+const InputSearch: React.FC<InputSearchProps> = ({value = '', onSubmit}) => {
   const [textSearch, setTextSearch] = useState(value);
-  const navigation = useNavigation();
 
   const handleSearch = useCallback(() => {
-    navigation.navigate('SearchTab', { screen: 'Search', params: {query: textSearch}})
-  }, []);
+    onSubmit(textSearch)
+  }, [textSearch]);
 
   return (
     <Container>

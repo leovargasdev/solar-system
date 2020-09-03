@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import { ScrollView, TouchableWithoutFeedback } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { useNavigation, RouteProp, useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import Layout from '../../components/Layout/';
 import { Text } from '../../components/Layout/styles';
@@ -15,7 +15,7 @@ import Mars from '../../assets/planets/mars.svg';
 import api from '../../services/api';
 
 type SearchRouteProps = {
-  Search: {
+  params: {
     query: string;
   };
 };
@@ -29,18 +29,17 @@ interface PlanetProps {
 
 const Search: React.FC = () => {
   const navigate = useNavigation();
-  const {params: { query }} = useRoute<RouteProp<SearchRouteProps, 'Search'>>();
+  const {
+    params: { query },
+  } = useRoute() as SearchRouteProps;
   
   const [listPlanets, setListPlanets] = useState<PlanetProps[]>([]);
-  
-  useEffect(() => {
-    async function loadSearch(){
-      const response = await api.get(`find/${query}`);
-      console.log(response.data);
-      setListPlanets(response.data);
-    }
-    loadSearch();
+  // Atualiza os itens, sem precisar recarregar a página
+  const handleNewSearch = useCallback((textSearch: string) => {
+    api.get(`find/${textSearch}`).then( response => setListPlanets(response.data));
   }, []);
+
+  useEffect(() => handleNewSearch(query), []);
 
   return (
     <Layout>
@@ -54,7 +53,7 @@ const Search: React.FC = () => {
 
         <Text type="title" style={{marginTop: 20}}>Resultados da busca</Text>
       
-        <InputSearch value="adasd"/>
+        <InputSearch value={query} onSubmit={handleNewSearch}/>
 
         {listPlanets.map(planet => (
           <Box key={planet.id}>

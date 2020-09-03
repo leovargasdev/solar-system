@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { ScrollView } from 'react-native';
+import { ScrollView, Alert } from 'react-native';
 import { SvgUri } from 'react-native-svg';
 
 import Layout from '../../components/Layout/';
@@ -25,13 +25,16 @@ const Home: React.FC = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
-    async function loadPlanets(){
-      const response = await api.get('/planets');
-      setPlanets(response.data);
+    try {
+      api.get('/planets').then(response => setPlanets(response.data));
+    } catch(err) {
+      Alert.alert('Erro ao listar os planetas');
     }
-    
-    loadPlanets();
-  })
+  }, []);
+
+  const handleSearch = useCallback((textSearch) => {
+    navigation.navigate('SearchTab', { screen: 'Search', params: {query: textSearch}})
+  }, []);
 
   return (
     <Layout>
@@ -46,7 +49,7 @@ const Home: React.FC = () => {
 
         <Text type="normal" style={{marginTop: 5}}>O que você vai apreder hoje?</Text>
 
-        <InputSearch />
+        <InputSearch onSubmit={handleSearch}/>
 
         <Text type="normal" style={{marginTop: 30, marginBottom: 20}}>Categorias</Text>
 
